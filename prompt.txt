@@ -1,0 +1,788 @@
+Build a premium, futuristic automotive website using my existing 3D car model.
+
+IMPORTANT:
+
+* I already have the 3D car model in GLB/GLTF format.
+* DO NOT generate, replace, remodel, or recreate the car model.
+* Use my existing model directly in the Three.js scene.
+* The main visual identity of the website should revolve around an interactive holographic/scanned 3D vehicle.
+* The hologram effect must be created dynamically with Three.js/WebGL shaders and post-processing, NOT baked into the GLB.
+* The final result should feel like a premium futuristic automotive technology website, inspired by the visual quality of Tripo-style holographic 3D previews.
+
+## TECH STACK
+
+Use:
+
+* React
+* Vite
+* TypeScript
+* React Three Fiber
+* Three.js
+* @react-three/drei
+* Framer Motion / Motion
+* Tailwind CSS
+* @react-three/postprocessing where appropriate
+* Lucide React for interface icons
+
+Use modern component architecture and keep the Three.js code separated from normal UI code.
+
+Suggested structure:
+
+src/
+├── components/
+│   ├── Navbar/
+│   ├── Hero/
+│   ├── CarViewer/
+│   ├── CarScene/
+│   ├── Specs/
+│   ├── Performance/
+│   ├── Technology/
+│   ├── Features/
+│   ├── CTA/
+│   └── Footer/
+├── three/
+│   ├── CarModel.tsx
+│   ├── CarScene.tsx
+│   ├── HologramMaterial.ts
+│   ├── HologramEffect.tsx
+│   ├── ScanEffect.tsx
+│   ├── HologramParticles.tsx
+│   ├── Lighting.tsx
+│   └── CameraController.tsx
+├── data/
+│   └── car.ts
+├── hooks/
+│   ├── useCarModel.ts
+│   └── useDevicePerformance.ts
+├── assets/
+│   └── models/
+└── pages/
+
+Keep the architecture clean and reusable.
+
+# OVERALL DESIGN DIRECTION
+
+Create a premium futuristic automotive experience.
+
+Visual references:
+
+* futuristic automotive technology
+* holographic vehicle visualization
+* high-end concept-car presentation
+* digital vehicle scanner
+* advanced engineering laboratory
+* cinematic dark interface
+* minimal luxury
+* technical UI
+* subtle glassmorphism
+* premium editorial typography
+* sophisticated motion design
+
+Do NOT make the site look like a generic gaming website.
+
+Do NOT overload the interface with neon effects.
+
+The hologram should be the primary visual element while the rest of the website remains sophisticated and minimal.
+
+Use a dark cinematic background:
+
+* near-black
+* charcoal
+* very subtle blue tones
+* cyan/electric-blue holographic highlights
+
+Use large typography, generous whitespace, subtle borders and restrained glass surfaces.
+
+# HERO SECTION
+
+The hero should immediately showcase the 3D vehicle.
+
+Layout:
+
+LEFT:
+
+* small technical eyebrow
+* large automotive headline
+* short description
+* primary CTA
+* secondary CTA
+
+RIGHT / CENTER:
+
+* large interactive 3D vehicle
+
+On large screens the vehicle should dominate the viewport.
+
+Example hierarchy:
+
+"ENGINEERED BEYOND LIMITS"
+
+"THE FUTURE
+OF PERFORMANCE."
+
+Small supporting copy explaining the vehicle.
+
+Buttons:
+
+"EXPLORE VEHICLE"
+"VIEW SPECIFICATIONS"
+
+Do not put excessive text over the car.
+
+The car must remain visually dominant.
+
+# 3D CAR VIEWER
+
+Use my existing GLB/GLTF model.
+
+Load it with React Three Fiber / Drei.
+
+The car should:
+
+* slowly rotate when idle
+* respond to pointer movement
+* allow controlled orbit interaction
+* smoothly interpolate camera movement
+* have subtle floating movement
+* remain centered and properly framed
+* support desktop and mobile
+
+Do not allow the interaction to feel like a basic model viewer.
+
+It should feel like an interactive product presentation.
+
+Use smooth damping everywhere.
+
+Avoid sudden camera movements.
+
+# HOLOGRAM EFFECT
+
+This is the MOST IMPORTANT part.
+
+Create a sophisticated holographic material/effect in Three.js.
+
+The final result should resemble a futuristic holographic vehicle projection:
+
+* translucent cyan/blue vehicle
+* visible internal geometry
+* glowing edges
+* luminous contours
+* subtle wireframe structure
+* animated scanlines
+* faint digital interference
+* soft volumetric glow
+* subtle flicker
+* tiny floating particles
+* subtle chromatic distortion
+* technical scanning behavior
+
+Do NOT simply make the car blue.
+
+Do NOT simply use opacity.
+
+Do NOT use a basic wireframe.
+
+The result should look like a real holographic projection.
+
+# HOLOGRAM MATERIAL
+
+Create a reusable custom hologram shader.
+
+Use a ShaderMaterial or an appropriate shader-based material approach.
+
+The shader should support:
+
+* transparency
+* Fresnel edge glow
+* emissive cyan/blue color
+* view-angle based intensity
+* scanline animation
+* subtle noise
+* animated distortion
+* vertical scan bands
+* opacity variation
+* edge highlighting
+* internal holographic structure
+
+Conceptually:
+
+CENTER OF MODEL:
+semi-transparent and relatively subtle
+
+EDGES:
+stronger cyan emission
+
+SILHOUETTE:
+bright luminous outline
+
+SURFACE:
+subtle horizontal scanning lines
+
+INTERIOR:
+faint holographic geometry/details
+
+Add slight animated variation so the hologram never looks completely static.
+
+The shader should be controlled using uniforms such as:
+
+uTime
+uScanProgress
+uScanIntensity
+uFresnelPower
+uOpacity
+uGlowIntensity
+uNoiseIntensity
+uColor
+
+Keep these values adjustable.
+
+# FRESNEL EDGE GLOW
+
+Use a Fresnel-style effect so edges facing away from the camera become brighter.
+
+The vehicle silhouette should have a strong cyan glow.
+
+The center should remain more transparent.
+
+This should create the characteristic projected-hologram appearance.
+
+# SCANNING EFFECT
+
+Add a continuously moving horizontal scanner.
+
+The scanner should travel vertically through the vehicle.
+
+When the scan reaches a region:
+
+* temporarily increase brightness
+* increase edge glow
+* reveal more geometry
+* create a thin luminous scanning boundary
+* generate subtle particles
+* slightly intensify the holographic distortion
+
+The scanning line should be subtle and premium.
+
+Do NOT make it look like a cheap laser beam.
+
+The scan should feel like a sophisticated vehicle analysis system.
+
+Allow the scan to restart periodically.
+
+Also allow the scan to be triggered when entering the hero section.
+
+# WIREFRAME / DIGITAL STRUCTURE
+
+Add a secondary holographic wireframe layer.
+
+The wireframe should be:
+
+* extremely thin
+* cyan
+* partially transparent
+* subtle
+* slightly animated
+
+It should reveal the vehicle's underlying topology without overwhelming the main silhouette.
+
+Do NOT make the entire car look like a standard Three.js wireframe.
+
+The wireframe should behave like an additional holographic projection layer.
+
+# HOLOGRAPHIC PARTICLES
+
+Create a lightweight particle system around the vehicle.
+
+Particles should:
+
+* float slowly
+* appear around the car
+* concentrate slightly near the scan region
+* glow softly
+* fade in/out
+* move with subtle randomness
+
+Avoid excessive particles.
+
+The vehicle must remain the focal point.
+
+# BLOOM / GLOW
+
+Use post-processing bloom to enhance emissive holographic elements.
+
+The bloom should affect:
+
+* car edges
+* holographic scan line
+* bright wireframe details
+* selected particles
+
+Keep bloom controlled.
+
+The car should remain sharp.
+
+Avoid turning the entire screen into a blue glow.
+
+Three.js supports bloom/post-processing and emissive-based selective bloom approaches.
+
+# DIGITAL DISTORTION
+
+Add very subtle digital distortion:
+
+* tiny horizontal displacement
+* occasional hologram flicker
+* subtle noise
+* slight RGB/chromatic separation
+* small intensity fluctuations
+
+Keep this extremely restrained.
+
+The vehicle should remain recognizable and premium.
+
+Do not create aggressive glitch effects.
+
+# HOLOGRAM STATES
+
+Create at least these states:
+
+NORMAL
+HOLOGRAM
+SCANNING
+REVEAL
+
+The application should be able to smoothly transition between them.
+
+For example:
+
+NORMAL → HOLOGRAM
+
+The car gradually becomes transparent while cyan emission increases.
+
+HOLOGRAM → SCANNING
+
+Scanline and scanning boundary activate.
+
+SCANNING → REVEAL
+
+The vehicle becomes temporarily brighter and more detailed.
+
+Transitions must be smooth.
+
+# INTERACTION
+
+Add an interface control allowing the user to switch between:
+
+"HOLOGRAM"
+"REAL"
+
+When switching:
+
+REAL:
+
+* normal PBR materials
+* realistic lighting
+* realistic reflections
+
+HOLOGRAM:
+
+* custom holographic shader
+* cyan emission
+* transparency
+* Fresnel
+* scanlines
+* wireframe
+* particles
+* bloom
+
+The transition should animate rather than instantly switch.
+
+# CAMERA
+
+Use a cinematic camera.
+
+Default hero camera:
+
+* three-quarter front view
+* slightly above vehicle center
+* vehicle fills approximately 55–70% of the visual area
+* enough negative space for typography
+* cinematic perspective
+
+When the user interacts:
+
+* smoothly orbit around the vehicle
+* maintain vehicle focus
+* prevent extreme angles
+* prevent clipping
+* use damping
+
+Add subtle automatic camera movement when the user is idle.
+
+# ENVIRONMENT
+
+Create a dark futuristic environment.
+
+Use:
+
+* dark floor
+* subtle circular platform/grid beneath vehicle
+* faint radial glow
+* soft atmospheric fog
+* minimal floating particles
+* subtle technical grid
+
+Avoid a busy environment.
+
+The background should make the hologram stand out.
+
+# SECTIONS AFTER HERO
+
+Build the rest of the website as a premium automotive landing page.
+
+## PERFORMANCE
+
+Large numerical statistics:
+
+0–100 km/h
+Top Speed
+Horsepower
+Torque
+
+Use animated counters when entering viewport.
+
+Use clean glass/technical cards.
+
+## ENGINEERING
+
+Explain:
+
+* aerodynamic design
+* powertrain
+* chassis
+* cooling
+* braking
+* suspension
+
+Use technical diagrams or visual cards.
+
+## TECHNOLOGY
+
+Create futuristic technology cards.
+
+Examples:
+
+ACTIVE AERODYNAMICS
+SMART POWER MANAGEMENT
+ADVANCED THERMAL CONTROL
+DIGITAL VEHICLE SYSTEM
+
+Use subtle hover animations.
+
+## VEHICLE EXPLORER
+
+Create interactive feature hotspots around the 3D vehicle.
+
+Example:
+
+Engine
+Aerodynamics
+Brakes
+Wheels
+Lighting
+Cockpit
+
+Clicking a hotspot should:
+
+* focus the camera
+* highlight the relevant vehicle area
+* show a small information panel
+
+Use smooth camera transitions.
+
+## SPECIFICATIONS
+
+Create a clean technical specification section.
+
+Use a structured grid rather than excessive cards.
+
+Include:
+
+Engine
+Power
+Torque
+Transmission
+Acceleration
+Top Speed
+Weight
+Drive Type
+
+## FINAL CTA
+
+End with a cinematic full-width section.
+
+Large heading:
+
+"ENGINEERED FOR THE NEXT ERA."
+
+Include a CTA.
+
+The vehicle or holographic silhouette can appear subtly in the background.
+
+# NAVIGATION
+
+Create a premium floating navbar.
+
+Desktop:
+
+Logo left
+Navigation center
+CTA right
+
+Navigation:
+
+Overview
+Performance
+Technology
+Design
+Specifications
+
+Use glassmorphism carefully.
+
+The navbar should:
+
+* remain fixed
+* become slightly more opaque when scrolling
+* have smooth active-link animation
+* have subtle blur
+* have thin borders
+* never cover important content
+
+Mobile:
+
+Use a clean hamburger menu.
+
+Do not make the mobile navigation overly complicated.
+
+# MOTION DESIGN
+
+Use Framer Motion for normal HTML/UI animations.
+
+Use Three.js animation loops for 3D effects.
+
+Animations should include:
+
+* hero text reveal
+* staggered section reveal
+* smooth card hover
+* number counters
+* camera transitions
+* hologram intensity transitions
+* scan animation
+* particle movement
+* section transitions
+
+Use smooth easing.
+
+Avoid excessive bouncing.
+
+Everything should feel engineered and precise.
+
+# RESPONSIVENESS
+
+Desktop:
+Large cinematic 3D presentation.
+
+Laptop:
+Reduce 3D resolution/post-processing slightly.
+
+Tablet:
+Reduce particle count and effects.
+
+Mobile:
+Prioritize performance.
+
+On mobile:
+
+* lower DPR
+* reduce particles
+* reduce bloom
+* reduce shader complexity
+* reduce model quality if necessary
+* disable expensive effects when required
+
+Do not remove the 3D experience completely unless WebGL is unavailable.
+
+# PERFORMANCE
+
+Treat performance as a first-class requirement.
+
+Implement:
+
+* lazy-loaded GLB
+* Suspense loading state
+* optimized DPR
+* adaptive quality
+* limited post-processing
+* reduced particle counts on mobile
+* proper disposal
+* no unnecessary React re-renders
+* memoized Three.js objects where appropriate
+
+Do not recreate materials/geometries every render.
+
+Keep animation calculations inside the Three.js render loop where appropriate.
+
+Use GPU-friendly shaders.
+
+The custom shader must not perform unnecessarily expensive calculations.
+
+# LOADING EXPERIENCE
+
+Before the car loads, show a futuristic loading interface.
+
+Example:
+
+INITIALIZING VEHICLE SYSTEM
+[progress bar]
+
+Then:
+
+HOLOGRAPHIC SYSTEM ONLINE
+
+When loading completes, transition smoothly into the hero.
+
+Do not display a generic spinner.
+
+# WEBGL FALLBACK
+
+If WebGL is unavailable:
+
+Display a high-quality static vehicle image/poster instead of breaking the page.
+
+The website must still function.
+
+# ACCESSIBILITY
+
+Respect:
+
+prefers-reduced-motion
+
+When reduced motion is enabled:
+
+* disable automatic camera rotation
+* reduce particle movement
+* disable aggressive scanning
+* reduce UI motion
+* keep the vehicle interactive but calm
+
+Ensure all buttons and navigation are keyboard accessible.
+
+# CODE QUALITY
+
+Use TypeScript properly.
+
+Create reusable components.
+
+Do not put the entire website into App.tsx.
+
+Separate:
+
+UI
+Three.js scene
+materials
+post-processing
+data
+animations
+hooks
+
+Keep vehicle data in a dedicated data file.
+
+Keep hologram configuration centralized.
+
+For example:
+
+hologramConfig = {
+color,
+opacity,
+fresnelPower,
+glowIntensity,
+scanIntensity,
+scanSpeed,
+noiseIntensity,
+particleCount
+}
+
+This should make it easy to tune the visual effect later.
+
+# IMPORTANT 3D REQUIREMENT
+
+Do not modify the geometry of my existing car model unless absolutely necessary.
+
+The holographic appearance must be generated at runtime.
+
+The original model should remain reusable.
+
+The same model should support:
+
+REAL mode
+HOLOGRAM mode
+
+Use Three.js materials/shaders/post-processing to create the visual transformation.
+
+Three.js ShaderMaterial is specifically intended for custom GPU shader effects, making it appropriate for the holographic material.
+
+# VISUAL QUALITY TARGET
+
+The final website should feel like:
+
+a premium futuristic automotive launch website combined with an advanced holographic vehicle scanner.
+
+Think:
+
+cinematic
+minimal
+technical
+luxury
+futuristic
+interactive
+precise
+
+NOT:
+
+gaming UI
+cyberpunk overload
+cheap neon
+generic SaaS
+basic 3D model viewer
+simple wireframe car
+
+The hologram must feel physically present in the environment, with:
+
+translucency
+Fresnel edges
+emission
+scanlines
+wireframe structure
+particles
+subtle distortion
+bloom
+depth
+atmosphere
+
+The result should look like a professionally designed interactive automotive technology experience.
+
+FIRST TASK:
+
+Before writing the full implementation:
+
+1. Inspect the existing project structure.
+2. Identify where the existing GLB/GLTF model is located.
+3. Inspect the model and determine its dimensions/orientation if possible.
+4. Identify existing dependencies.
+5. Do not unnecessarily replace existing dependencies.
+6. Propose the final component/file structure.
+7. Then implement the website incrementally.
+
+Do not generate a fake replacement car.
+
+Use the actual provided 3D model throughout the experience.
